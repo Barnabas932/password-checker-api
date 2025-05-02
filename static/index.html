@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jelszóellenőrző</title>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 2em auto; }
+    input, button { padding: 0.5em; margin-top: 1em; width: 100%; }
+    pre { background: #f4f4f4; padding: 1em; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h2>Jelszóellenőrzés</h2>
+  <input type="text" id="password" placeholder="Írd be a jelszavad">
+  <button onclick="checkPassword()">Ellenőrzés</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function checkPassword() {
+      const password = document.getElementById('password').value;
+      const res = await fetch('/check_password', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ password })
+      });
+      const data = await res.json();
+      document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
