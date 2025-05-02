@@ -20,7 +20,7 @@ def validate_password(pwd: str):
         issues.append("Nagybetűt kell tartalmaznia.")
     if not re.search(r'\d', pwd):
         issues.append("Számot kell tartalmaznia.")
-    if not re.search(r'[!@#$%^&*()_\\-+=\\[\\]{};:\\\"<>,.?/\\\\|]', pwd):
+    if not re.search(r'[!@#$%^&*()_\-+=\[\]{};:\"<>,.?/\\|]', pwd):
         issues.append("Speciális karaktert kell tartalmaznia (!@#$...).")
     return issues
 
